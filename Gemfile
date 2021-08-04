@@ -58,18 +58,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development do
   gem 'rubocop', require: false
-<<<<<<< Updated upstream
-end
-
-gem 'devise'
-=======
-<<<<<<< Updated upstream
-end
-=======
 end
 
 gem 'devise'
 gem 'gimei'
 gem 'pry-rails'
->>>>>>> Stashed changes
->>>>>>> Stashed changes

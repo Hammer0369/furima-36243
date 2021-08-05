@@ -7,6 +7,8 @@ require("@rails/ujs").start()
 // require("turbolinks").start() // JavaScriptを正常に動作させるため画面遷移を高速化するGem"turbolinks"を無効化。
 require("@rails/activestorage").start()
 require("channels")
+require("../item_price");
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

@@ -12,11 +12,11 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :image, :name, :info
     validates :price, format: { with: /\A[0-9]+\z/, allow_blank: true },
-                      inclusion: { in: 300..9999999, message: 'is out of setting range', allow_blank: true},
+                      inclusion: { in: 300..9_999_999, message: 'is out of setting range', allow_blank: true },
                       numericality: true
   end
 
-  with_options numericality: { other_than: 1 , message: "can't be blank" } do
+  with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id, :status_id, :shipping_fee_id, :prefecture_id, :delivery_scheduled_id
   end
 end

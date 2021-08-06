@@ -15,7 +15,7 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
       it 'priceが9,999,999円なら出品できる' do
-        @item.price = 9999999
+        @item.price = 9_999_999
         expect(@item).to be_valid
       end
       it 'priceが半角なら出品できる' do
@@ -75,7 +75,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
       it 'priceが9,999,999円以上だと出品できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
@@ -84,15 +84,15 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
-      it "priceが半角英数混合では登録できないこと" do
-        @item.price = "300yen"
+      it 'priceが半角英数混合では登録できないこと' do
+        @item.price = '300yen'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
-      it "priceが半角英語だけでは登録できないこと" do
-        @item.price = "threemillion"
+      it 'priceが半角英語だけでは登録できないこと' do
+        @item.price = 'threemillion'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
     end
   end

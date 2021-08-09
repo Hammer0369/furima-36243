@@ -43,7 +43,6 @@ class ItemsController < ApplicationController
   end
 
   def back_except_listing_person
-    @item = Item.find(params[:id])
     redirect_to root_path unless current_user.id == @item.user.id
   end
 

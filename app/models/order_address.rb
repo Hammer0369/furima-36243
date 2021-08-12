@@ -6,12 +6,12 @@ class OrderAddress
     validates :token
     validates :user_id
     validates :item_id
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)", allow_blank: true}
-    validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
+    validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)', allow_blank: true }
+    validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city, :house_number
-    validates :phone_number, format: {with: /\A\d{10,11}\z/,
-                                      message: "is invalid. Input only half-width number of 10 to 11 characters",
-                                      allow_blank: true}
+    validates :phone_number, format: { with: /\A\d{10,11}\z/,
+                                       message: 'is invalid. Input only half-width number of 10 to 11 characters',
+                                       allow_blank: true }
   end
 
   def save

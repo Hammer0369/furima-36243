@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
-  describe '発送先情報の保存' do
+  describe 'クレジット情報と発送先情報の保存' do
     before do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
@@ -10,16 +10,24 @@ RSpec.describe OrderAddress, type: :model do
     end
 
     context '内容に問題がない場合' do
-      it 'すべての値が正しく入力されていれば保存できる' do
+      it 'tokenがあれば保存できる' do
         expect(@order_address).to be_valid
       end
-      it 'building_nameは空でも保存できる' do
+      it '発送先情報の値が全て正しく入力されていれば保存できる' do
+        expect(@order_address).to be_valid
+      end
+      it 'buildingは空でも保存できる' do
         @order_address.building = ''
         expect(@order_address).to be_valid
       end
     end
 
     context '内容に問題がある場合' do
+      it 'tokenが空では登録できない' do
+        @order_address.token = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
       it 'postal_codeが空だと保存できない' do
         @order_address.postal_code = ''
         @order_address.valid?

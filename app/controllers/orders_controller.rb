@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :set_item, only: [:index, :create]
-  before_action :authenticate_user!, only: [:index, :create]
+  before_action :set_item
+  before_action :authenticate_user!
+  before_action :back_sold_out_and_listing_person
 
   def index
     @order_address = OrderAddress.new
@@ -27,6 +28,10 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def back_sold_out_and_listing_person
+    redirect_to root_path unless current_user.id != @item.user.id && @item.order.blank?
   end
 
   def pay_item

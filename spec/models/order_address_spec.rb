@@ -73,6 +73,16 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone number is invalid. Input only half-width number of 10 to 11 characters')
       end
+      it 'phone_numberが12桁以上だと保存できない' do
+        @order_address.phone_number = '080123456789'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid. Input only half-width number of 10 to 11 characters')
+      end
+      it 'phone_numberが英数字混合だと保存できない' do
+        @order_address.phone_number = '080abcdefgh'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid. Input only half-width number of 10 to 11 characters')
+      end
     end
   end
 end

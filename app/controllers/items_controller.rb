@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :back_except_listing_person, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.all.order('created_at DESC')
+    @items = Item.order('created_at DESC')
   end
 
   def new
@@ -47,7 +47,7 @@ class ItemsController < ApplicationController
   end
 
   def back_except_listing_person
-    redirect_to root_path unless current_user.id == @item.user.id
+    redirect_to root_path unless current_user.id == @item.user.id && @item.order.blank?
   end
 
   def set_item
